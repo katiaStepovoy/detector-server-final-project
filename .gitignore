@@ -1,0 +1,5 @@
+/ReactiveAlertsManagementService/build/
+/build/
+/.gradle/
+.idea/
+.idea/*
