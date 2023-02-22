@@ -1,4 +1,4 @@
-rootProject.name = 'TerrorDetectorServer'
+rootProject.name = "TerrorDetectorServer"
 
-include 'ReactiveAlertsManagementService'
+include("ReactiveAlertsManagementService")
 

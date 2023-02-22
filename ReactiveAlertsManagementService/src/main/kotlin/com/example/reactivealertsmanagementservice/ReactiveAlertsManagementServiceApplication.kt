@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class ReactiveAlertsManagementServiceApplication
 
 fun main(args: Array<String>) {
-    runApplication<ReactiveAlertsManagementServiceApplication>(*args)
+	runApplication<ReactiveAlertsManagementServiceApplication>(*args)
 }
