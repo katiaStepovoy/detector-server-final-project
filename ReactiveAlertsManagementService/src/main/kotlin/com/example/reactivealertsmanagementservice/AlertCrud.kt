@@ -55,37 +55,5 @@ interface AlertCrud : ReactiveMongoRepository<AlertEntity, String> {
         pageable: Pageable
     ): Flux<AlertEntity>
 
-//    fun findAllByKeywordsContainsAndTimestampEqualsIgnoreCaseAndWebsite(
-//        keyword: String?,
-//        timestamp: String?,
-//        website: String?,
-//        location: String?,
-//        pageable: Pageable
-//    ): Flux<AlertEntity> {
-//        val timestamp = LocalDateTime.parse(timestamp, DateTimeFormatter.ofPattern("ddMMyyyy[ HHmmss[.SSS]]"))
-//            .atZone(ZoneId.systemDefault())
-//            .toInstant()
-//            .let { Date.from(it) }
-//        val startTimestamp: Date = LocalDateTime.ofInstant(timestamp.toInstant(), ZoneId.systemDefault())
-//            .minusHours(1)
-//            .toInstant(ZoneOffset.UTC)
-//            .toEpochMilli()
-//            .let { Date(it) }
-//        val endTimestamp: Date = LocalDateTime.ofInstant(timestamp.toInstant(), ZoneId.systemDefault())
-//            .plusHours(1)
-//            .toInstant(ZoneOffset.UTC)
-//            .toEpochMilli()
-//            .let { Date(it) }
-//        val exampleMatcher = ExampleMatcher.matchingAll()
-//            .withIgnoreCase("timestamp")
-//            .withMatcher("website", ExampleMatcher.GenericPropertyMatchers.ignoreCase())
-//            .withMatcher("keywords", ExampleMatcher.GenericPropertyMatchers.contains())
-//        val probe = AlertEntity()
-//        probe.keywords = if (keyword != null) listOf(keyword) else null
-//        probe.timestamp = timestamp
-//        probe.website = if (website.isNullOrEmpty()) null else website
-//        probe.location = if (location.isNullOrEmpty()) null else location
-//        val example = Example.of(probe, exampleMatcher)
-//        return this.findAll(example, pageable.sort).filter { it.timestamp!! in startTimestamp..endTimestamp }
-//    }
+
 }
