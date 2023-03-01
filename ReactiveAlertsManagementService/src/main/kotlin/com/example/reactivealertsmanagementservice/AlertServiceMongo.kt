@@ -3,11 +3,17 @@ package com.example.reactivealertsmanagementservice
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
+import org.springframework.data.mongodb.core.query.Criteria
+import org.springframework.data.mongodb.core.query.Query
+import org.springframework.data.mongodb.core.query.isEqualTo
+import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
+import java.time.ZoneId
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -48,8 +54,7 @@ class AlertServiceMongo(
 
     @Transactional(readOnly = true)
     override fun search(
-        filterType: String,
-        filterValue: String,
+        filters: Map<String, String>,
         sortAttribute: String,
         sortOrder: String,
         size: Int,
@@ -57,61 +62,71 @@ class AlertServiceMongo(
     ): Flux<AlertBoundary> {
         val pageable = PageRequest.of(page, size,
             getSortOrder(sortOrder) as Sort.Direction,getSortAttribute(sortAttribute) , "alertId")
-        when (filterType) {
-            "byLocation" -> {
-                return this.crud
-                    .findAllByLocation(filterValue, pageable)
-                    .map {
-                        this.converter.toBoundary(it)
-                    }
-                    .log()
+        if(filters.isEmpty()){
+            return this.crud.findAll(pageable.sort).map {
+                this.converter.toBoundary(it)
             }
-            "byWebsite" -> {
-                return this.crud
-                    .findAllByWebsite(filterValue, pageable)
-                        .map {
-                            this.converter.toBoundary(it)
-                        }
-                        .log()
-            }
-            "byTimestamp" -> {
-                val timestamp = LocalDateTime.parse(filterValue, DateTimeFormatter.ofPattern("ddMMyyyyHHmm"))
-                return this.crud
-                    .findAllByTimestamp(Date.from(timestamp.toInstant(ZoneOffset.UTC)), pageable)
-                    .map {
-                        this.converter.toBoundary(it)
-                    }
-                    .log()
-            }
-            "byTimestampInRange" -> {
-                val from = LocalDateTime.parse(filterValue.split(",")[0], DateTimeFormatter.ofPattern("ddMMyyyyHHmm"))
-                val to = LocalDateTime.parse(filterValue.split(",")[1], DateTimeFormatter.ofPattern("ddMMyyyyHHmm"))
-                return this.crud.findAllByTimestampBetween(
-                    Date.from(from.toInstant(ZoneOffset.UTC)),
-                    Date.from(to.toInstant(ZoneOffset.UTC)),
-                    pageable)
-                    .map {
-                        this.converter.toBoundary(it)
-                    }
-            }
-            "byKeywords" -> {
-                return this.crud
-                    .findAllByKeywordsContains(filterValue, pageable)
-                    .map {
-                        this.converter.toBoundary(it)
-                    }
-                    .log()
-            }
-            else->{
-                if(filterType != "")
-                    throw InputException("$filterType is not valid option")
-                return this.crud
-                    .findByAlertIdNotNull(pageable)
-                    .map {
-                     this.converter.toBoundary(it)
-                    }
-            }
+                .log()
         }
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.DAY_OF_YEAR, 7) // Add 7 days to the current date
+        var fromDate: Date = calendar.time
+        var toDate : Date = calendar.time
+        var keyword : String = "EOF"
+        var location : String = "EOF"
+        var website : String = "EOF"
+        if(!filters["byTimestamp"].isNullOrEmpty()){
+            val DATE_SHORT_LENGTH = 8
+            var date = filters["byTimestamp"]!!
+            var sdf:SimpleDateFormat = SimpleDateFormat("ddMMyyyy hh mm")
+            if(date.length == DATE_SHORT_LENGTH){
+                date += " 00 00"
+            }
+            var timestamp = sdf.parse(date)
+
+            var minusH :Long = 0
+            var minusD :Long = 0
+            var plusD :Long = 0
+            var plusH :Long = 0
+            if(date.endsWith("00 00")){
+                minusD = 1
+                plusD = 1
+            }else{
+                plusH = 5.5.toLong()
+                minusH = 5.5.toLong()
+            }
+            fromDate = LocalDateTime.ofInstant(timestamp.toInstant(), ZoneId.systemDefault())
+                .minusHours(minusH)
+                .minusDays(minusD)
+                .toInstant(ZoneOffset.UTC)
+                .toEpochMilli()
+                .let { Date(it) }
+            toDate = LocalDateTime.ofInstant(timestamp.toInstant(), ZoneId.systemDefault())
+                .plusHours(plusH)
+                .plusDays(plusD)
+                .toInstant(ZoneOffset.UTC)
+                .toEpochMilli()
+                .let { Date(it) }
+        }
+        if(!filters["byKeywords"].isNullOrEmpty()) {
+            keyword = filters["byKeywords"]!!
+        }
+        if(!filters["byLocation"].isNullOrEmpty()) {
+            location = filters["byLocation"]!!
+        }
+        if(!filters["byWebsite"].isNullOrEmpty()) {
+            website = filters["byWebsite"]!!
+        }
+        return this.crud.findAllByLocationOrWebsiteEndingWithIgnoreCaseOrTimestampBetweenOrKeywordsContainsIgnoreCase(
+            location,
+            website,
+            fromDate,
+            toDate,
+            keyword,pageable)
+            .map {
+                this.converter.toBoundary(it)
+            }
+            .log()
     }
 
     override fun updateAlert(alert: AlertBoundary): Mono<Void> {

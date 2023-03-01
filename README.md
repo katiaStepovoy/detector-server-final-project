@@ -5,7 +5,7 @@
 <div align="center">
     <img src="https://drive.google.com/uc?export=§view&id=1S-2jMdLZwR19ZQegfyNG_wa5BwZegPnr" width="350px" /> 
     <p>This API stands for alerts management.</p> 
-    <a href="http://localhost:8082/swagger-ui/index.html">Alerts API</a>
+    <a href="http://localhost:8082/webjars/swagger-ui/index.html">Alerts API</a>
 </div>  
 
 [Extended description](ReactiveAlertsManagementService/README.md)

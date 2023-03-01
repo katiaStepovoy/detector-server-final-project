@@ -23,12 +23,15 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+	implementation("org.springframework.data:spring-data-commons:2.7.6")
+
 
 	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-webflux-ui
 	implementation("org.springdoc:springdoc-openapi-webflux-ui:1.6.13")
 
 	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-kotlin
 	runtimeOnly("org.springdoc:springdoc-openapi-kotlin:1.6.13")
+
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")

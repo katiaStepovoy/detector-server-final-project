@@ -49,24 +49,31 @@ class AlertsController(
         alert.alertId = alertID
         return alertService.updateAlert(alert)
     }
-
     @RequestMapping(
         path = ["/alerts"],
         method = [RequestMethod.GET],
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
     fun searchAlertByAttribute(
-        @RequestParam(name = "filterType", required = false, defaultValue = "") filterType:String,
-        @RequestParam(name = "filterValue", required = false, defaultValue = "") filterValue:String,
+//        @RequestParam(name = "filterType", required = false, defaultValue = "") filterType:String,
+        @RequestParam(name = "filters", required = false, defaultValue = "") filters:String,
         @RequestParam(name = "sortBy", required = false, defaultValue = "alertId") sortAttribute:String,
         @RequestParam(name = "sortOrder", required = false, defaultValue = "ASC") sortOrder:String,
         @RequestParam(name = "page", required = false, defaultValue = "0") page:Int,
         @RequestParam(name = "size", required = false, defaultValue = "10") size:Int
     ): Flux<AlertBoundary> {
+        val filterKeys = listOf("byLocation", "byWebsite", "byTimestamp", "byKeywords")
+        var filtersInput : Map<String, String> = HashMap<String, String>()
+        if(!filters.isNullOrEmpty()) {
+            filtersInput = filters.split(",")
+                .mapIndexed { index, value -> filterKeys[index] to value }
+                .toMap()
+                .toMutableMap()
+        }
+
         return this.alertService
             .search(
-                filterType,
-                filterValue,
+                filtersInput,
                 sortAttribute,
                 sortOrder,
                 size,
@@ -74,6 +81,30 @@ class AlertsController(
             )
 
     }
+//    @RequestMapping(
+//        path = ["/alerts"],
+//        method = [RequestMethod.GET],
+//        produces = [MediaType.APPLICATION_JSON_VALUE]
+//    )
+//    fun searchAlertByAttribute(
+//        @RequestParam(name = "filterType", required = false, defaultValue = "") filterType:String,
+//        @RequestParam(name = "filterValue", required = false, defaultValue = "") filterValue:String,
+//        @RequestParam(name = "sortBy", required = false, defaultValue = "alertId") sortAttribute:String,
+//        @RequestParam(name = "sortOrder", required = false, defaultValue = "ASC") sortOrder:String,
+//        @RequestParam(name = "page", required = false, defaultValue = "0") page:Int,
+//        @RequestParam(name = "size", required = false, defaultValue = "10") size:Int
+//    ): Flux<AlertBoundary> {
+//        return this.alertService
+//            .search(
+//                filterType,
+//                filterValue,
+//                sortAttribute,
+//                sortOrder,
+//                size,
+//                page
+//            )
+//
+//    }
 
 
     /*
