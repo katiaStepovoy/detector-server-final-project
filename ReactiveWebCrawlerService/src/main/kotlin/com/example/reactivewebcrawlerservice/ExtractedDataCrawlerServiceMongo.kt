@@ -3,6 +3,9 @@ package com.example.reactivewebcrawlerservice
 import com.microsoft.playwright.ElementHandle
 import com.microsoft.playwright.Playwright
 import org.springframework.stereotype.Service
+import reactor.core.publisher.Mono
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 @Service
@@ -11,7 +14,6 @@ class ExtractedDataCrawlerServiceMongo(
 ) : ExtractedDataCrawlerService{
 
     override fun runCrawler(url: String) {
-        println("hello $url")
         val playwright = Playwright.create()
         try {
             val browser = playwright.chromium().launch()
@@ -27,16 +29,48 @@ class ExtractedDataCrawlerServiceMongo(
             for ((i, post) in posts.withIndex()) {
                 postDivs[i + 1] = post.querySelectorAll("div")
             }
+            val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy, HH:mm:ss")
+//           save each post at our mongo db
             for ((k, v) in postDivs) {
                 println("$k.")
                 val nameDate = v[3].querySelectorAll("span")
                 val name = nameDate[0].innerText()
-                val date = nameDate[1].innerText()
+                val dateTime = nameDate[1].innerText()
+                val date = LocalDateTime.parse(dateTime, formatter)
                 val postContent = v[5].querySelector("p").innerText()
-                println("name = $name")
-                println("date = $date")
-                println("content = $postContent")
+                // check if entity with the same publisher and timestamp already exists
+                var extractedDataEntity = ExtractedDataEntity()
+                extractedDataEntity.websiteUrl = url
+                extractedDataEntity.publisher = name
+                extractedDataEntity.timestamp = date
+                extractedDataEntity.content = postContent
+
+                this.extractedDataCrud.findByPublisherAndTimestamp(name,date)
+                    .switchIfEmpty(
+                        Mono.defer{
+                            var extractedDataEntity = ExtractedDataEntity()
+                            extractedDataEntity.websiteUrl = url
+                            extractedDataEntity.publisher = name
+                            extractedDataEntity.timestamp = date
+                            extractedDataEntity.content = postContent
+                            // entity does not exist, save it to the database
+                            extractedDataCrud.save(extractedDataEntity)
+                        }
+                    )
+                    .flatMap {
+                        Mono.empty<Void>()
+                    }
+                    .subscribe(
+                        {
+                            println("Extracted Data Entity saved successfully")
+                        },
+                        {error ->
+                            println("An error occurred while saving data to the database: ${error.message}")
+
+                        }
+                    )
             }
+
             browser.close()
         } catch (e: Exception) {
             println("An error occurred: ${e.message}")
@@ -44,17 +78,5 @@ class ExtractedDataCrawlerServiceMongo(
             playwright.use { }
             playwright.close()
         }
-
-    //        val keywords = doc.select("meta[name=keywords]").attr("content").split(",").map { it.trim() }
-
-//        var extractedDataEntity = ExtractedDataEntity()
-//        extractedDataEntity.content = content
-//        extractedDataEntity.websiteUrl = url
-//        extractedDataEntity.timestamp = LocalDateTime.now()
-//        extractedDataEntity.keywords = keywords
-
-
     }
-
-
 }

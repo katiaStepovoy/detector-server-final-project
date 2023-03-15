@@ -2,7 +2,6 @@ package com.example.reactivewebcrawlerservice
 
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
-//import org.springframework.stereotype.Service
 
 @Component
 class ExtractedDataCrawlerScheduler(
@@ -15,10 +14,10 @@ class ExtractedDataCrawlerScheduler(
                 "http://localhost:3000/telegram",
                 "http://localhost:3000/twitter"
             )
+            // TODO: remove the comment here
 //            urls.parallelStream().forEach { url ->
 //                extractedDataCrawlerService.runCrawler(url)
 //            }
             extractedDataCrawlerService.runCrawler("http://localhost:3000/facebook")
-//         println("Hello")
         }
     }

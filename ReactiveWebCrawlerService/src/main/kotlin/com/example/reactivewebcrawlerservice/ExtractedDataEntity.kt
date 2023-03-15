@@ -8,6 +8,7 @@ import java.time.LocalDateTime
 class ExtractedDataEntity() {
     @Id
     var extractedDataId: String? = null
+    var publisher: String? = null
     var content: String? = null
     var websiteUrl: String? = null
     var timestamp: LocalDateTime? = null
