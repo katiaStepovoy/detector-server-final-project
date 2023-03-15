@@ -1,5 +1,4 @@
 # README #
-
 ## Services
 ### Alerts
 <div align="center">
@@ -10,10 +9,20 @@
 
 [Extended description](ReactiveAlertsManagementService/README.md)
 
+### Web Crawler
+<div align="center">
+    <img src="https://drive.google.com/uc?export=§view&id=1QHA8yeeurWgKQqBnPqseETOj0MNC3xsx" width="350px" /> 
+    <p>This DB is scraped data.</p>
+</div>
+
+[Extended description](ReactiveWebCrawlerService/README.md)
+
 * Version: 2023
 
 ### How do I get set up? ###
 
 * Clone this repository
-* Note that we are about to create subprojects within this repository
-* Pick the proper subproject for your purpose
+* Clone [This repository](https://github.com/katiaStepovoy/SocialMediaSimulations) 
+* Clone [This repository](https://github.com/chenifargan/chenifargan_finalproject)
+* Build and run them all
+* Good luck!
