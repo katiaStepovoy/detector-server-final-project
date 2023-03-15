@@ -24,6 +24,8 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
+	implementation("org.seleniumhq.selenium:selenium-java:4.0.0-alpha-7")
+	implementation("com.microsoft.playwright:playwright:1.15.1")
 	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-webflux-ui
 	implementation("org.springdoc:springdoc-openapi-webflux-ui:1.6.13")
 
