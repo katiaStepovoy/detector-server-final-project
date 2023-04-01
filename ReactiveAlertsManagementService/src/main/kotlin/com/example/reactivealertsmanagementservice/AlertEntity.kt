@@ -8,11 +8,11 @@ import java.util.*
 class AlertEntity() {
     @Id
     var alertId: String? = null
-    var crawlerId: String? = null
-    var userId: String? = null
     var website: String? = null
-    var location: String? = null
+    var location: String? = null // should be "lat,lng"
     var timestamp: Date? = null
     var feedback: String? = null
+    var content: String? = null // post's text
+    var publisher: String? = null
     var keywords: List<String>? = null
 }

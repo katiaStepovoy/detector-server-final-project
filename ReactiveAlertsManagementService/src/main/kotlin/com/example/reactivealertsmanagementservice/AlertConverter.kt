@@ -9,12 +9,12 @@ class AlertConverter {
         var boundary = AlertBoundary()
 
         boundary.alertId = entity.alertId
-        boundary.crawlerId = entity.crawlerId
-        boundary.userId = entity.userId
         boundary.website = entity.website
         boundary.location = entity.location
         boundary.timestamp = entity.timestamp
         boundary.feedback = entity.feedback
+        boundary.content = entity.content
+        boundary.publisher = entity.publisher
         boundary.keywords = entity.keywords
         return boundary
     }
@@ -24,12 +24,12 @@ class AlertConverter {
         if (boundary.alertId != null) {
             entity.alertId = boundary.alertId!!
         }
-        entity.crawlerId = boundary.crawlerId
-        entity.userId = boundary.userId
         entity.website = boundary.website
         entity.location = boundary.location
         entity.timestamp = boundary.timestamp
         entity.feedback = boundary.feedback
+        entity.content = boundary.content
+        entity.publisher = boundary.publisher
         entity.keywords = boundary.keywords
 
         return entity
