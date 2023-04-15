@@ -15,7 +15,7 @@ class AlertConverter {
         boundary.feedback = entity.feedback
         boundary.content = entity.content
         boundary.publisher = entity.publisher
-        boundary.keywords = entity.keywords
+        boundary.keywords = entity.keywords!!.joinToString()
         return boundary
     }
     fun toEntity (boundary:AlertBoundary):AlertEntity {
@@ -30,7 +30,7 @@ class AlertConverter {
         entity.feedback = boundary.feedback
         entity.content = boundary.content
         entity.publisher = boundary.publisher
-        entity.keywords = boundary.keywords
+        entity.keywords = boundary.keywords!!.split(",")
 
         return entity
     }

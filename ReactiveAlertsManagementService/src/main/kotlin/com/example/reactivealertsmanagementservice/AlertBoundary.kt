@@ -10,7 +10,7 @@ class AlertBoundary() {
     var feedback: String? = null
     var content: String? = null
     var publisher: String? = null
-    var keywords: List<String>? = null
+    var keywords: String? = null
 
 
 

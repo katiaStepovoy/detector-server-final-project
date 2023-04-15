@@ -7,6 +7,7 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @RestController
+@CrossOrigin("10.0.2.2")
 class AlertsController(
     @Autowired val alertService: AlertService
     ){
