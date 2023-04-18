@@ -13,14 +13,14 @@ class ExtractedDataCrawlerServiceMongo(
     private val extractedDataCrud: ExtractedDataCrud,
 ) : ExtractedDataCrawlerService{
 
-    override fun runCrawler(url: String) {
+    override fun runCrawler(url:String) {
         val playwright = Playwright.create()
         try {
             val browser = playwright.chromium().launch()
             val context = browser.newContext()
             val page = context.newPage()
             page.navigate(url)
-            var posts = page.querySelectorAll("div.MuiPaper-root.MuiPaper-outlined.MuiPaper-rounded.MuiCard-root.css-qlht7l-MuiPaper-root-MuiCard-root")
+            var posts = page.querySelectorAll("div.MuiPaper-root.MuiPaper-outlined.MuiPaper-rounded.MuiCard-root.css-1vxp1x8")
             while (posts.isEmpty()) {
                 page.waitForSelector("div.MuiPaper-root.MuiPaper-outlined.MuiPaper-rounded.MuiCard-root.css-qlht7l-MuiPaper-root-MuiCard-root")
                 posts = page.querySelectorAll("div.MuiPaper-root.MuiPaper-outlined.MuiPaper-rounded.MuiCard-root.css-qlht7l-MuiPaper-root-MuiCard-root")
@@ -35,7 +35,18 @@ class ExtractedDataCrawlerServiceMongo(
                 println("$k.")
                 val nameDate = v[3].querySelectorAll("span")
                 val name = nameDate[0].innerText()
-                val dateTime = nameDate[1].innerText()
+                val dateTimeLocation = nameDate[1].innerText().split("\n")
+                val dateTime = dateTimeLocation[0]
+                val location = dateTimeLocation[1]
+                val regex = """-?\d+\.\d+""".toRegex()
+                val matchResults = regex.findAll(location)
+
+                val numbers = matchResults.map { it.value.toDouble() }.toList()
+
+                var latitude = numbers.getOrNull(0)
+                var longitude = numbers.getOrNull(1)
+
+
                 val date = LocalDateTime.parse(dateTime, formatter)
                 val postContent = v[5].querySelector("p").innerText()
                 // check if entity with the same publisher and timestamp already exists
@@ -44,6 +55,7 @@ class ExtractedDataCrawlerServiceMongo(
                 extractedDataEntity.publisher = name
                 extractedDataEntity.timestamp = date
                 extractedDataEntity.content = postContent
+                extractedDataEntity.location = latitude.toString() + "," +longitude.toString()
 
                 this.extractedDataCrud.findByPublisherAndTimestamp(name,date)
                     .switchIfEmpty(

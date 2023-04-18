@@ -13,5 +13,6 @@ class ExtractedDataEntity() {
     var websiteUrl: String? = null
     var timestamp: LocalDateTime? = null
     var keywords: List<String>? = null
-    val location: String? = null
+    var location: String? = null
+    var isPredicted: Boolean? = false
 }
