@@ -1,6 +1,7 @@
 /ReactiveAlertsManagementService/build/
 /ReactiveWebCrawlerService/build/
 /PredictionResultService/build/
+/TrainModelService/venv/
 /build/
 /.gradle/
 .idea/
