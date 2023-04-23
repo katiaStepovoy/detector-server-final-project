@@ -14,10 +14,9 @@ class ExtractedDataCrawlerScheduler(
                 "https://project-simulations.onrender.com/darkweb",
                 "https://project-simulations.onrender.com/twitter"
             )
-            // TODO: remove the comment here
             urls.parallelStream().forEach { url ->
                 extractedDataCrawlerService.runCrawler(url)
             }
-           // extractedDataCrawlerService.runCrawler(urls)
+//            extractedDataCrawlerService.runCrawler("https://project-simulations.onrender.com/darkweb")
         }
     }

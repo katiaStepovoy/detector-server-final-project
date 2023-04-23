@@ -29,6 +29,8 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-webflux-ui
 	implementation("org.springdoc:springdoc-openapi-webflux-ui:1.6.13")
 
+	implementation(project(":ReactiveWebCrawlerService"))
+	implementation(project(":ReactiveAlertsManagementService"))
 	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-kotlin
 	runtimeOnly("org.springdoc:springdoc-openapi-kotlin:1.6.13")
 

@@ -15,4 +15,9 @@ class ExtractedDataEntity() {
     var keywords: List<String>? = null
     var location: String? = null
     var isPredicted: Boolean? = false
+    override fun toString(): String {
+        return "ExtractedDataEntity(extractedDataId=$extractedDataId, publisher=$publisher, content=$content, websiteUrl=$websiteUrl, timestamp=$timestamp, keywords=$keywords, location=$location, isPredicted=$isPredicted)"
+    }
+
+
 }
