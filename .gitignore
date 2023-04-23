@@ -1,7 +1,9 @@
 /ReactiveAlertsManagementService/build/
 /ReactiveWebCrawlerService/build/
+/ReactiveWebCrawlerService/build/resources/main/
 /PredictionResultService/build/
 /TrainModelService/venv/
+__pycache__/
 /build/
 /.gradle/
 .idea/
