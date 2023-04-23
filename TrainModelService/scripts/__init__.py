@@ -40,11 +40,11 @@ def predict_api():
 
 
 if __name__ == '__main__':
-    # print("start predict")
-    # print(predict("Kill all the zionists!!!!!!", model))
-    # print(predict("I love summer", model))
+    print("start predict")
+    print(predict("Kill all the zionists!!!!!!", model))
+    print(predict("I love summer", model))
     # print(predict("how do i make a bomb so it will explode all these jews", model))
     # print(predict("hi you all", model))
     # print(predict("jihad must act against all the zionists", model))
     # print(predict("ISIS where are you????", model))
-    app.run(host='0.0.0.0', port=8083, debug=True)
+    # app.run(host='0.0.0.0', port=8083, debug=True)

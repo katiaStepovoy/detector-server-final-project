@@ -2,6 +2,7 @@ import os
 
 import tensorflow as tf
 # BERT imports
+import gdown
 import torch
 from sklearn.preprocessing import LabelEncoder
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
@@ -56,6 +57,8 @@ def split_data(df, ratio=0.2, validation=True):
 
 def load_model(model_path):
     print("start load model")
+    output_path = 'output/models/model.pth'
+    gdown.download(model_path, output_path, quiet=False)
     model = BertForSequenceClassification.from_pretrained("bert-base-uncased", num_labels=3)
     model.load_state_dict(torch.load(model_path))
     tokenizer_loaded = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
