@@ -5,7 +5,8 @@ from data_analysis import show_common_word_analysis, generate_statistics_grid
 from scripts.train_bert_model import train_model, save_model, load_model, predict
 
 app = Flask(__name__)
-model_path = 'output/models/fine_tuned_bert_model.pth'
+model_path = 'https://drive.google.com/uc?id=1wu1c1YlcYsN7sLIoQvnBs7FVCY4oBKS8'
+# model_path = 'output/models/fine_tuned_bert_model.pth'
 model, tokenizer = load_model(model_path)
 
 
