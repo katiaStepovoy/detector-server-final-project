@@ -1,6 +1,6 @@
 # Detector-Terror-Server #
 ## Services
-### Alerts
+### Alerts 🚨
 <div align="center">
     <img src="https://drive.google.com/uc?export=§view&id=1S-2jMdLZwR19ZQegfyNG_wa5BwZegPnr" width="350px" /> 
     <p>This API stands for alerts management.</p> 
@@ -9,7 +9,7 @@
 
 [Extended description](ReactiveAlertsManagementService/README.md)
 
-### Web Crawler
+### Web Crawler 🕸️
 <div align="center">
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: stretch;">
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
@@ -26,7 +26,10 @@
 
 [Extended description](ReactiveWebCrawlerService/README.md)
 
-### Predictions
+### NLP Model 🧠
+[Extended description](TrainModelService/README.md)
+
+### Predictions 🧩
 <div align="center">
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: stretch;">
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
@@ -38,10 +41,6 @@
 
 [Extended description](PredictionResultService/README.md)
 
-### NLP Model
-[Extended description](TrainModelService/README.md)  
-  
-  
 * Version: 2023a
 
 ### How do I get set up? ###

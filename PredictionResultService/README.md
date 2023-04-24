@@ -1,6 +1,6 @@
-# Prediction Result Service 🎯🔮
+# Prediction Result Service 🧩
 This is a microservice that processes unpredicted data extracted by a web crawler service and makes predictions using a machine learning model. If the predicted class is "related", it creates an alert and saves it to an alerts service.  
-**It uses three external services: [Crawler Service](../ReactiveWebCrawlerService/README.md), [Model Service](../TrainModelService/README.md), and [Alerts Service](../ReactiveAlertsManagementService/README.md).**
+**It uses three external services: [Crawler Service 🕸️](../ReactiveWebCrawlerService/README.md), [Model Service 🧠 ](../TrainModelService/README.md), and [Alerts Service 🚨](../ReactiveAlertsManagementService/README.md).**
 <div align="center">
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: stretch;">
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
