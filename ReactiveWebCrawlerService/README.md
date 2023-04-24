@@ -1,12 +1,21 @@
-# Getting Started
+# Web Crawler Service
 
 ### General details:
 Service's name: ReactiveWebCrawlerService  
 * This is a Scheduled Service, You can set your on delta time for the crawler go and scrape data from the urls.
 ### Extract data using web crawler
 <div align="center">
-    <img src="https://drive.google.com/uc?export=§view&id=1QHA8yeeurWgKQqBnPqseETOj0MNC3xsx" width="350px" /> 
-    <p>This DB is scraped data.</p>
+    <div style="display: flex; flex-direction: row; justify-content: center; align-items: stretch;">
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <img src="https://drive.google.com/uc?export=§view&id=1QHA8yeeurWgKQqBnPqseETOj0MNC3xsx" width="350px" height="242px" style="margin-right: 10px;"/> 
+            <p>This DB is scraped data.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <img src="https://drive.google.com/uc?export=§view&id=13QL5M-narJgKpEF8kM1u2qFX6fRmBcZs" width="350px" height="242px"/> 
+            <p>This API stands for extracted data objects.</p> 
+        </div>
+    </div>
+    <a href="http://localhost:8081/webjars/swagger-ui/index.html">Extracted Data API</a>
 </div>
 
 #### Data Structure

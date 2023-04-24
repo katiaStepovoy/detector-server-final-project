@@ -1,4 +1,4 @@
-# Getting Started
+# Alerts Management Service
 
 ### General details:
 Service's name: ReactiveAlertsManagementService
@@ -27,7 +27,8 @@ Service's name: ReactiveAlertsManagementService
 
 For application client [Detector_App](https://github.com/chenifargan/chenifargan_finalproject)  
 For detect alerts on live  
-[Reactive Web Crawler Service](../ReactiveWebCrawlerService/README.md)  
+[Reactive Web Crawler Service](../ReactiveWebCrawlerService/README.md) & [Prediction Result Service](../PredictionResultService/README.md)
+
 clone this repository
 
 * Note that this is subproject so make sure to do build for the project and then for the service you interest for (Alerts service)
