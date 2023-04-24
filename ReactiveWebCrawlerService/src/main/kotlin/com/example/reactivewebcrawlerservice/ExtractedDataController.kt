@@ -26,8 +26,8 @@ class ExtractedDataController (
         method = [RequestMethod.PUT],
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun updateExtractedDataPredicted(@PathVariable id: String):Mono<Void> {
+    fun updateExtractedDataPredicted(@PathVariable extractedID: String):Mono<Void> {
         return this.extractedDataCrawlerService
-            .updateExtractedDataPredicted(id)
+            .updateExtractedDataPredicted(extractedID)
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 @Component
 class ExtractedDataCrawlerScheduler(
     private val extractedDataCrawlerService: ExtractedDataCrawlerService) {
-        @Scheduled(fixedRate = 1000)
+        @Scheduled(fixedRate = 600000)
         fun runCrawler() {
             val urls = listOf(
                 "https://project-simulations.onrender.com/facebook",
