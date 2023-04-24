@@ -1,11 +1,11 @@
-# Web Crawler Service
+# Web Crawler Service 🕸️
 
 ### General details:
 Service's name: ReactiveWebCrawlerService  
 * This is a Scheduled Service, You can set your on delta time for the crawler go and scrape data from the urls.
 ### Extract data using web crawler
 <div align="center">
-    <div style="display: flex; flex-direction: row; justify-content: center; align-items: stretch;">
+    <div style="display: flex; flex-direction: row; justify-content: center; align-items: stretch;white-space: nowrap;">
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
             <img src="https://drive.google.com/uc?export=§view&id=19J5sHrl9MYWoo9d_KIbQdwJ8cTD-tDbm" width="350px" height="242px" style="margin-right: 5px;"/> 
             <p>This DB is scraped data.</p>

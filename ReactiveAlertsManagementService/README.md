@@ -1,4 +1,4 @@
-# Alerts Management Service
+# Alerts Management Service 🚨
 
 ### General details:
 Service's name: ReactiveAlertsManagementService
