@@ -24,14 +24,14 @@ class PredictionResultService(
     val mapper = jacksonObjectMapper()
     @Scheduled(fixedRate = 600000)
     fun processUnpredictedData(){
-//        TODO: get all unpredicted extracted data from clientCrawler
+//       get all unpredicted extracted data from clientCrawler
         val unpredictedData = clientCrawler
             .get()
             .uri("/extracted")
             .retrieve()
             .bodyToFlux(object : ParameterizedTypeReference<ExtractedDataEntity>() {})
 //        println("retrieved ExtractedDataEntity from crawler service")
-//        TODO: for each unpredicted extracted data get predict from clientModel
+//      for each unpredicted extracted data get predict from clientModel
         unpredictedData.flatMap { data ->
             val json = mapper.writeValueAsString(mapOf("text" to  data.content!!))
             println(json)

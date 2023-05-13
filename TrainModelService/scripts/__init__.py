@@ -1,7 +1,8 @@
 from IPython.display import display
-from collect_data import load_file
+# from collect_data import load_file
 from flask import Flask, request, jsonify
 from data_analysis import show_common_word_analysis, generate_statistics_grid
+from scripts.ruled_based_algorithm.ruled_based_nlp import calculate_label, clean_data, load_file
 from scripts.train_bert_model import train_model, save_model, load_model, predict
 
 app = Flask(__name__)
@@ -35,24 +36,19 @@ def init():
 def predict_api():
     # Get the input text from the request
     text = request.json['text']
-    print(f"text = {text}")
+    # BERT
     # Make a prediction
-    predicted_class, probabilities = predict(text, model)
+    # predicted_class, probabilities = predict(text, model)
     # Return the predicted class and probabilities as a JSON response
-    # TODO: add assignment to keywords according to bisal file
+    predicted_class, keywords = calculate_label(clean_data(text))
+    print(f"res = {predicted_class}, text = {text}, keywords = {keywords}")
     response = {'predicted_class': predicted_class,
-                'keywords': "future implementation",
-                'probabilities': probabilities}
+                'keywords': ','.join(keywords)}
+    # 'probabilities': probabilities
+    # }
     return jsonify(response)
 
 
 if __name__ == '__main__':
-    init()
     app.run(host='127.0.0.1', port=8083, debug=True)
-    # print("start predict")
-    # print(predict("Kill all the zionists!!!!!!", model))
-    # print(predict("I love summer", model))
-    # print(predict("how do i make a bomb so it will explode all these jews", model))
-    # print(predict("hi you all", model))
-    # print(predict("jihad must act against all the zionists", model))
-    # print(predict("ISIS where are you????", model))
+

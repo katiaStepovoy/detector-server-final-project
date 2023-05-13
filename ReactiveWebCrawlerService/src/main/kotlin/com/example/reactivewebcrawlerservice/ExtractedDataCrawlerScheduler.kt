@@ -10,7 +10,7 @@ class ExtractedDataCrawlerScheduler(
         fun runCrawler() {
             val urls = listOf(
                 "https://project-simulations.onrender.com/facebook",
-               // "https://project-simulations.onrender.com/reddit",
+                "https://project-simulations.onrender.com/reddit",
                 "https://project-simulations.onrender.com/darkweb",
                 "https://project-simulations.onrender.com/twitter"
             )

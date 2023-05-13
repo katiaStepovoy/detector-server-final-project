@@ -7,6 +7,7 @@ from nltk.stem import WordNetLemmatizer
 
 FILE_PATH = 'https://drive.google.com/uc?id=1JzcnouhRKY8yhNN03DMCkIbRk-ss0lkq'
 
+
 def load_file():
     try:
         return clean_data(pd.read_csv(FILE_PATH, encoding='utf-8-sig'))
