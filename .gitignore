@@ -8,3 +8,4 @@ __pycache__/
 /.gradle/
 .idea/
 .idea/*
+/TrainModelService/scripts/output/models/fine_tuned_bert_model.pth
