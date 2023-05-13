@@ -51,4 +51,16 @@ def predict_api():
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8083, debug=True)
-
+    # for bert active init()
+    # init()
+    # print(calculate_label(clean_data("Kill all the zionists!!!!!!")))
+    # print(calculate_label(clean_data("I just got back from a week-long vacation, and it was exactly what I needed. Sometimes a break is just what you need to recharge. #vacation #relaxation")))
+    # print(calculate_label(clean_data("I call for Jihad to join us and make history, we will complete our mission and go on battle in the name of Alla, blast all zionists")))
+    # print(calculate_label(clean_data("I love summer")))
+    # print(calculate_label(clean_data("how do I make a bomb, so it will explode all these jews")))
+    # print(predict("Kill all the zionists!!!!!!", model))
+    # print(predict("I love summer", model))
+    # print(predict("how do I make a bomb, so it will explode all these jews", model))
+    # print(predict("hi you all", model))
+    # print(predict("jihad must act against all the zionists", model))
+    # print(predict("ISIS where are you????", model))
