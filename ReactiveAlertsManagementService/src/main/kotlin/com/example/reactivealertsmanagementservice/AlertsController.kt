@@ -46,9 +46,11 @@ class AlertsController(
         consumes = [MediaType.APPLICATION_JSON_VALUE],
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun updateAlert(@PathVariable("alertID") alertID: String, @RequestBody alert: AlertBoundary): Mono<Void> {
+    fun updateAlert(@PathVariable("alertID") alertID: String, @RequestBody alert: AlertBoundary): Mono<Int> {
         alert.alertId = alertID
         return alertService.updateAlert(alert)
+            .then(Mono.just(1)) // Return 1 for success
+            .onErrorResume { Mono.just(0) } // Return 0 for failure
     }
     @RequestMapping(
         path = ["/alerts"],

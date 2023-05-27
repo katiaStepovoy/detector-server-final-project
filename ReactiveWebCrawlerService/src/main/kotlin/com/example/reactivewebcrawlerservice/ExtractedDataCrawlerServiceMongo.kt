@@ -25,6 +25,9 @@ class ExtractedDataCrawlerServiceMongo(
             if (url.contains("twitter")){
                 cssString = "css-1gnf693"
             }
+            if (url.contains("darkweb")){
+                cssString = "css-8kdga4"
+            }
             var posts = page.querySelectorAll("div.MuiPaper-root.MuiPaper-outlined.MuiPaper-rounded.MuiCard-root.${cssString}")
             while (posts.isEmpty()) {
                 page.waitForSelector("div.MuiPaper-root.MuiPaper-outlined.MuiPaper-rounded.MuiCard-root.${cssString}")
