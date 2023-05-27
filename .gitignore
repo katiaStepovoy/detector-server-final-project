@@ -9,3 +9,4 @@ __pycache__/
 .idea/
 .idea/*
 /TrainModelService/scripts/output/models/fine_tuned_bert_model.pth
+/TrainModelService/scripts/lstm_and_cnn/classify_sentences.h5
