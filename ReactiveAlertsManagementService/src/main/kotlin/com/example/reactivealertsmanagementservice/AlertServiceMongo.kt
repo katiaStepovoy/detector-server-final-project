@@ -27,7 +27,8 @@ class AlertServiceMongo(
     @Transactional
     override fun create(alert: AlertBoundary): Mono<AlertBoundary> {
         alert.alertId = null
-        alert.timestamp = Date()
+        if (alert.timestamp == null)
+            alert.timestamp = Date()
 
         return Mono.just(alert)
             .log()

@@ -8,7 +8,7 @@ model, tokenizer = get_model(), get_tokenizer()
 app = Flask(__name__)
 
 
-# # Define an endpoint for the prediction API
+# Define an endpoint for the prediction API
 @app.route('/predict', methods=['POST'])
 def predict_api():
     # Get the input text from the request
@@ -22,8 +22,6 @@ def predict_api():
     # ruled based algorithm predict very good the not-related label
     response = {'predicted_class': predicted_class_ann,
                 'keywords': ','.join(keywords)}
-    # 'probabilities': probabilities
-    # }
     return jsonify(response)
 
 
@@ -54,7 +52,8 @@ if __name__ == '__main__':
         "Just finished binge-watching the latest season of my favorite TV series. Now I have to patiently wait for the next one. 😅📺 #TVAddict #CantWait",
         "STOP calling it terrorism if all theyre doing is fighting for civilian rights!!! #notterror #palestine",
         "I think all the gun owners in the area need to come togther and show them our power! #gun #gunlaw",
-        "This is God's war #Jihad"
+        "This is God's war #Jihad",
+        "I declare that I am interested in joining the ranks of ISIS, I have materials for a bomb that can destroy the State of Israel forever!!!🤘"
     ]
     for seq in test_sentences:
         print(seq)
