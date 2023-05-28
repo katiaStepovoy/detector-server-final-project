@@ -134,6 +134,11 @@ class AlertServiceMongo(
         return this.crud.findById(alert.alertId!!)
             .switchIfEmpty(Mono.error(AlertNotFoundException("Visit with ID ${alert.alertId} not found.")))
             .flatMap {
+                alert.content = it.content
+                alert.timestamp = it.timestamp
+                alert.website = it.website
+                alert.publisher = it.publisher
+                alert.location = it.location
                 val entity = this.converter.toEntity(alert)
                 entity.alertId = it.alertId // make sure to set the ID from the existing entity
                 this.crud.save(entity)
