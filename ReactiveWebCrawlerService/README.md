@@ -7,7 +7,7 @@ Service's name: ReactiveWebCrawlerService
 <div align="center">
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: stretch;">
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <img src="https://drive.google.com/uc?export=§view&id=1QHA8yeeurWgKQqBnPqseETOj0MNC3xsx" width="350px" height="242px" style="margin-right: 10px;"/> 
+            <img src="https://drive.google.com/uc?export=§view&id=19J5sHrl9MYWoo9d_KIbQdwJ8cTD-tDbm" width="350px" height="242px" style="margin-right: 10px;"/> 
             <p>This DB is scraped data.</p>
         </div>
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
