@@ -60,8 +60,8 @@ if __name__ == '__main__':
         predicted_class, keywords = calculate_label(clean_data(seq))
         predicted_class_ann=classify_content(model, "LSTM+CNN", tokenizer, seq)
         print(
-        f"text = {seq}\nlstm_and_cnn = {predicted_class_ann},ruled_based_algorithm= {predicted_class}\nkeywords = {keywords}")
-# ruled based algorithm predict very good the not-related label
+            f"text = {seq}\nlstm_and_cnn = {predicted_class_ann},ruled_based_algorithm= {predicted_class}\nkeywords = {keywords}")
+        # ruled based algorithm predict very good the not-related label
         print()
 
     app.run(host='127.0.0.1', port=8083, debug=True)
